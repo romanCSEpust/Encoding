@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+lx = input("Enter your value: ")
+val=[]
+current_level = 1 
+for x1 in lx:
+ if x1 == '1':
+     current_level = -current_level
+ val.append(current_level)
+
+x=0
+ax = []
+ay = []
+for x2 in val:
+    if x2 == 1:
+        ax.append(x)
+        ay.append(1)
+        ax.append(x+1)
+        ay.append(1)
+    else:
+        ax.append(x)
+        ay.append(-1)
+        ax.append(x+1)
+        ay.append(-1)
+    x=x+1
+plt.plot(ax,ay)
+plt.show()
