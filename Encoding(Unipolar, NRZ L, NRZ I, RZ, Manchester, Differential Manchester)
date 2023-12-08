@@ -1,0 +1,203 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
+val = input("Enter your value: ")
+
+#Unipolar 
+plt.subplot(2,3,1) 
+x=0
+ax = []
+ay = []
+ax.append(0)
+ay.append(0)
+for x1 in val:
+  if x1 == '1':
+    ax.append(x)
+    ay.append(1)
+    ax.append(x+1)
+    ay.append(1)
+  else:
+   ax.append(x)
+   ay.append(0)
+   ax.append(x+1)
+   ay.append(0)
+  x=x+1
+ 
+ax.append(x);
+ay.append(0)
+plt.plot(ax,ay)     
+plt.yticks([-2,-1,0,1,2,3])
+plt.title('Unipolar')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+
+#NRZL
+
+plt.subplot(2,3,2)
+x=0
+bx = []
+by = []
+for x1 in val:
+  if x1 == '0':
+    bx.append(x)
+    by.append(1)
+    bx.append(x+1)
+    by.append(1)
+  else:
+    bx.append(x)
+    by.append(-1)
+    bx.append(x+1)
+    by.append(-1)
+  x=x+1
+
+plt.plot(bx,by) 
+plt.yticks([-2,-1,0,1,2,3])   
+plt.title('NRZ-L')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+#NRZI
+
+
+plt.subplot(2,3,3)  
+lx=[]
+current_level = 1 
+for x1 in val:
+ if x1 == '1':
+    current_level = -current_level
+ lx.append(current_level)
+
+x=0
+cx = []
+cy = []
+for x2 in lx:
+  if x2 == 1:
+    cx.append(x)
+    cy.append(1)
+    cx.append(x+1)
+    cy.append(1)
+  else:
+    cx.append(x)
+    cy.append(-1)
+    cx.append(x+1)
+    cy.append(-1)
+  x=x+1
+plt.plot(cx,cy)
+plt.yticks([-2,-1, 0, 1, 2, 3])
+plt.title('NRZ-I')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+
+
+
+# RZ
+plt.subplot(2,3,4)
+dx=[]
+dy=[]
+x=0
+for bit in val:
+ if bit == '0':
+   dx.append(x)
+   dy.append(-1)
+   dx.append(x+0.5)
+   dy.append(-1)
+   dx.append(x+.5)
+   dy.append(0)
+   dx.append(x+1)
+   dy.append(0)
+ else :
+   dx.append(x)
+   dy.append(1)
+   dx.append(x+.5)
+   dy.append(1)
+   dx.append(x+.5)
+   dy.append(0)
+   dx.append(x+1)
+   dy.append(0)
+ x=x+1
+    
+plt.plot(dx,dy)
+  
+plt.yticks([-2,-1,0,1,2,3])
+plt.title('RZ')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+#Manchester
+
+plt.subplot(2,3,5) 
+ex=[]
+ey=[]
+x=0
+for bit in val:
+ if bit == '0':
+   ex.append(x)
+   ey.append(1)
+   ex.append(x+0.5)
+   ey.append(1)
+   ex.append(x+.5)
+   ey.append(-1)
+   ex.append(x+1)
+   ey.append(-1)
+ else :
+   ex.append(x)
+   ey.append(-1)
+   ex.append(x+.5)
+   ey.append(-1)
+   ex.append(x+.5)
+   ey.append(1)
+   ex.append(x+1)
+   ey.append(1)
+ x=x+1
+
+   
+plt.plot(ex,ey)
+plt.yticks([-2,-1,0,1,2,3])
+plt.title('Manchester')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+#Unipolar 
+plt.subplot(2,3,6) 
+x=0
+y=1
+c=0
+ax = []
+ay = []
+ax.append(0)
+ay.append(1) 
+for x1 in val:
+  if x1 == '1':
+    ax.append(x+.5)
+    ay.append(y)
+    ax.append(x+.5)
+    ay.append(-y)
+    ax.append(x+1)
+    ay.append(-y)
+    y=-y 
+     
+  else:
+   ax.append(x)
+   ay.append(-y)
+   ax.append(x+.5)
+   ay.append(-y)
+   ax.append(x+.5)
+   ay.append(y)
+   ax.append(x+1)
+   ay.append(y)
+  x=x+1
+  
+
+   
+plt.plot(ax,ay)
+plt.yticks([-2,-1,0,1,2,3])
+plt.title('Differential Manchester')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.show()
