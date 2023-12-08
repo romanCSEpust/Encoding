@@ -1,0 +1,42 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
+val = input("Enter your value: ")
+
+#Differential Manchester
+x=0
+y=1
+c=0
+ax = []
+ay = []
+ax.append(0)
+ay.append(1) 
+for x1 in val:
+  if x1 == '1':
+    ax.append(x+.5)
+    ay.append(y)
+    ax.append(x+.5)
+    ay.append(-y)
+    ax.append(x+1)
+    ay.append(-y)
+    c+=1;
+    y=-y 
+     
+  else:
+   ax.append(x)
+   ay.append(-y)
+   ax.append(x+.5)
+   ay.append(-y)
+   ax.append(x+.5)
+   ay.append(y)
+   ax.append(x+1)
+   ay.append(y)
+  x=x+1
+  
+
+   
+plt.plot(ax,ay)
+plt.title('Differential Manchester')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.show()
